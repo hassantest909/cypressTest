@@ -1,0 +1,35 @@
+
+    {
+    "security": {
+        "userName": "hassan",
+        "password": "string",
+        "securityToken": "string"
+    },
+    "account": {
+        "msidn": "string",
+        "iban": "string",
+        "bban": "string",
+        "pan": "string",
+        "currency": "string"
+    },
+    "channel": "string",
+    "terminal": "string",
+    "reterivalReferenceNumber": "string",
+    "payLoad": {
+    "cnic":"3240245976765",
+    "mobileNo":"03467199809"
+    },
+    "additionalInformation": [
+        {
+            "infoKey": "string",
+            "infoValue": "string"
+        }
+    ],
+    "checkSum": "string"
+}
+
+ 
+
+
+
+
