@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon May 22 15:34:31 PKT 2023","Mon May 22 15:34:33 PKT 2023","1552","","Only for demo","","","","https://dummy.restapiexample.com/api/v1/create",""
+"passed","Mon May 22 15:34:34 PKT 2023","Mon May 22 15:34:34 PKT 2023","53","","Only for demo","","","","console log",""
+"failed","Mon May 22 14:46:52 PKT 2023","Mon May 22 14:46:56 PKT 2023","4338","","Only for demo","","","","fixtures",""
+"failed","Mon May 22 15:34:33 PKT 2023","Mon May 22 15:34:34 PKT 2023","696","","Only for demo","","","","Git TEst",""
