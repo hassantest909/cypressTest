@@ -16,7 +16,16 @@ describe('Only for demo',()=>{
         });
     });
 
-    it('console log',()=>{
+    it.only('Git TEst',()=>{
+
+        basedemo.callApi(modeldemo,urls.demoUrl).then((response)=>{
+            expect(response.body).to.have.property('status','success')
+            expect(response.body.data).to.have.property('Name',modeldemo.Name).to.have.length('6');
+            cy.url('contains','api')
+        });
+    });
+
+    it.only('console log',()=>{
         const json = {
             "security": {
               "userName": "string",
@@ -56,17 +65,25 @@ describe('Only for demo',()=>{
 
     it('fixtures',()=>{
 
+        cy.fixture('example2.json').as('useme')
+        cy.get('useme').then((response)=>{
+          console.log(JSON.stringify(response))
+        })
+        let fix
         cy.fixture('example2.json').then((fixture) => {
            
-            fixture.security.userName = 'test';
+            fix = fixture
+            expect(fixture).to.have.property('security')
+
+            //fixture.security.userName = 'test';
             // Use the data sets in your test
             //console.log(JSON.stringify(fixture));
             //cy.log(dataSet1.age.toString());
           
-            console.log(JSON.stringify(fixture));
+            //console.log(JSON.stringify(fixture));
             //cy.log(dataSet2.content);
           });
-
+          console.log(JSON.stringify(fix))
     })
 
 
