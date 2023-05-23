@@ -7,7 +7,7 @@ const modeldemo = new ModelsDemo('hassan','100','24');
 
 describe('Only for demo',()=>{
 
-    it.only('https://dummy.restapiexample.com/api/v1/create',()=>{
+    it('https://dummy.restapiexample.com/api/v1/create',()=>{
 
         basedemo.callApi(modeldemo,urls.demoUrl).then((response)=>{
             expect(response.body).to.have.property('status','success')
@@ -16,7 +16,7 @@ describe('Only for demo',()=>{
         });
     });
 
-    it.only('Git TEst',()=>{
+    it('Git TEst',()=>{
 
         basedemo.callApi(modeldemo,urls.demoUrl).then((response)=>{
             expect(response.body).to.have.property('status','success')
@@ -25,7 +25,7 @@ describe('Only for demo',()=>{
         });
     });
 
-    it.only('console log',()=>{
+    it('console log',()=>{
         const json = {
             "security": {
               "userName": "string",
@@ -86,5 +86,12 @@ describe('Only for demo',()=>{
           console.log(JSON.stringify(fix))
     })
 
+    it.only('fixture data override',()=>{
+      cy.fixture('example.json').then((fix)=>{
+        cy.log(JSON.stringify(fix))
+        fix.name='hassan'
+        cy.log(JSON.stringify(fix))
+      })
+    })
 
 });
