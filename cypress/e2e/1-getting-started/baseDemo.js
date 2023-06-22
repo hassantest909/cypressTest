@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 export class BaseDemo {
     callApi(requestModel, url) {
         return cy.request({
@@ -8,4 +10,6 @@ export class BaseDemo {
             return response
         });
     }
+
+     
 }

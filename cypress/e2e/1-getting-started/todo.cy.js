@@ -1,5 +1,8 @@
 /// <reference types="cypress" />
 
+import { TestUtils } from "../../support/test_utils"
+
+const test_utils = new TestUtils()
 // Welcome to Cypress!
 //
 // This spec file contains a variety of sample tests
@@ -19,6 +22,17 @@ describe('example to-do app', () => {
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
   })
+
+  it.only('encryption and descryption',()=>{
+    cy.fixture('example2.json').then((data)=>{
+      const key = '9213eccd434c9bed8848485fefc80d49'
+      let encrypted_text = test_utils.encrypt(JSON.stringify(data),key)
+      cy.log(encrypted_text);
+      let decrypt_text = test_utils.decrypt(encrypted_text,key)
+      cy.log(JSON.stringify(decrypt_text));
+
+    });    
+  });
 
   it('displays two todo items by default', () => {
     // We use the `cy.get()` command to get all elements that match the selector.

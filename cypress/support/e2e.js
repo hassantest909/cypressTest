@@ -16,7 +16,13 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 import '@shelex/cypress-allure-plugin';
+import CryptoJS from 'crypto-js';
+import chaiJsonSchema from 'chai-json-schema'; 
+import AES from 'crypto-js/aes';
+chai.use(chaiJsonSchema);
 
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+
