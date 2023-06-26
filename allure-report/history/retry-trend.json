@@ -1,1 +1,1 @@
-[{"data":{"run":6,"retry":59}},{"data":{"run":6,"retry":59}}]
+[{"buildOrder":13,"reportUrl":"http://example.org/build#13/AllureReport","reportName":"Demo allure report","data":{"run":10,"retry":62}},{"data":{"run":6,"retry":59}}]
