@@ -1,13 +1,14 @@
-export class ViewTypeOfAccount{
-    constructor(){
-        this.search_button_locator = '.Down__Btn__End > .p-button'
+export class ViewTypeOfAccount {
+    constructor() {
+        this.search_button_locator = '.Down__Btn__End > :nth-child(1)'
         this.date_to_locator = '#dateTo'
         this.date_from_locator = '#dateFrom'
         this.validation_dialog_message_locator = '.Toastify__toast-body'
         this.status_locator = '#statusId'
         this.selected_created_by_locator = '#createdBy'
         this.select_updated_by_locator = '#updatedBy'
-        this.account_level_type_locator = '#accountClassificationId'
+        this.account_level_type_locator = '#lkpAccountClassificationId'
+        this.account_name_locator = '#accountLevelName'
 
         this.daily_trans_limit_dr_locator = '#dailyTransLimitDr'
         this.daily_amt_limit_dr_locator = '#dailyAmtLimitDr'
@@ -26,7 +27,7 @@ export class ViewTypeOfAccount{
         this.select_kyc_locator = '#kycSetHeadId'
     }
 
-    verify_input_fields_are_diabled(){
+    verify_input_fields_are_diabled() {
         cy.get(this.daily_trans_limit_dr_locator).should('be.disabled')
         cy.get(this.daily_amt_limit_dr_locator).should('be.disabled')
         cy.get(this.monthly_trans_limit_dr_locator).should('be.disabled')
@@ -40,29 +41,65 @@ export class ViewTypeOfAccount{
         cy.get(this.yearly_trans_limit_cr_locator).should('be.disabled')
         cy.get(this.yearly_amt_limit_cr_locator).should('be.disabled')
         cy.get(this.max_balance_locator).should('be.disabled')
+        cy.get(this.account_name_locator).should('be.disabled')
+    }
+
+    verify_input_fields_not_empty() {
+        cy.get(this.daily_trans_limit_dr_locator).should('not.have.value', '')
+        cy.get(this.daily_amt_limit_dr_locator).should('not.have.value', '')
+        cy.get(this.monthly_trans_limit_dr_locator).should('not.have.value', '')
+        cy.get(this.monthly_amt_limit_dr_locator).should('not.have.value', '')
+        cy.get(this.yearly_trans_limit_dr_locator).should('not.have.value', '')
+        cy.get(this.yearly_amt_limit_dr_locator).should('not.have.value', '')
+
+        cy.get(this.daily_trans_limit_cr_locator).should('not.have.value', '')
+        cy.get(this.daily_amt_limit_cr_locator).should('not.have.value', '')
+        cy.get(this.monthly_trans_limit_cr_locator).should('not.have.value', '')
+        cy.get(this.monthly_amt_limit_cr_locator).should('not.have.value', '')
+        cy.get(this.yearly_trans_limit_cr_locator).should('not.have.value', '')
+        cy.get(this.yearly_amt_limit_cr_locator).should('not.have.value', '')
+
+        cy.get(this.max_balance_locator).should('not.have.value', '')
+
+        //cy.get(this.account_level_type_locator).should('not.have.value', '')
     }
 
     select_status(txt) {
         cy.get(this.status_locator).click()
         cy.wait(2000)
-        cy.get('[aria-label="' + txt + '"]').click()
+        cy.get('.p-dropdown-items > :nth-child(' + txt + ')').click();
         //cy.get('.p-dropdown-items').get('BUSINESS').click()
     }
 
-    verify_dropdown_list_are_disabled(){
-        cy.get(this.select_kyc_locator).should('have.class','p-disabled')  
-        cy.get(this.account_level_type_locator).should('have.class','.p-disabled')
+    verify_type_of_account_list_is_disabled() {
+        //cy.get(this.select_kyc_locator).should('have.class','p-disabled')  
+        //cy.get(this.account_level_type_locator).should('have.class','.p-disabled')
+        cy.get(this.account_level_type_locator)
+            .then(($element) => {
+                const pointerEvents = Cypress.$($element).css('pointer-events');
+                expect(pointerEvents).to.equal('none');
+            });
     }
 
-    click_ok_button(){
+    verify_kyc_list_is_disabled() {
+        //cy.get(this.select_kyc_locator).should('have.class','p-disabled')  
+        //cy.get(this.account_level_type_locator).should('have.class','.p-disabled')
+        cy.get(this.select_kyc_locator)
+            .then(($element) => {
+                const pointerEvents = Cypress.$($element).css('pointer-events');
+                expect(pointerEvents).to.equal('none');
+            });
+    }
+
+    click_ok_button() {
         cy.get(this.ok_button_locator).click()
     }
 
-    click_on_search_button(){
+    click_on_search_button() {
         cy.get(this.search_button_locator).click()
     }
 
-    navigate_to_account_type(){
+    navigate_to_account_type() {
         cy.get('.layout-main > :nth-child(2) > .layout-menu-container > .layout-menu > :nth-child(6) > .p-ripple').click()
         cy.get('.layout-main > :nth-child(2) > .menu-logo > .logo > img')
     }
@@ -73,9 +110,9 @@ export class ViewTypeOfAccount{
             expect(messageText).to.include(txt)
         });
     }
-    
-    navigate_to_view_page(num){
+
+    navigate_to_view_page(num) {
         //cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-button-icon .p-c .pi .pi-eye"').click()
-        cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-button-primary').click()
+        cy.get(':nth-child(' + num + ') > :nth-child(5) > .actions > .p-button-primary').click()
     }
 }

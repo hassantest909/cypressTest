@@ -21,6 +21,8 @@ export class AddTypeOfAccount {
         this.yearly_trans_limit_cr_locator = '#yearlyTransLimitCr'
         this.yearly_amt_limit_cr_locator = '#yearlyAmtLimitCr'
         this.max_balance_locator = '#maxAmtLimit'
+        this.cancel_button_locator ='.Btn__Transparent'
+
     }
 
     accountNameGenerater() {
@@ -29,6 +31,10 @@ export class AddTypeOfAccount {
         // Combine timestamp and random number to create a unique number
         const randomNumber = `${timestamp}${randomSuffix}`;
         return randomNumber;
+    }
+
+    click_cancel_button(){
+        cy.get(this.cancel_button_locator).click()
     }
 
     navigate_to_add_account_page() {
@@ -46,22 +52,26 @@ export class AddTypeOfAccount {
         cy.get(this.account_level_type_locator).click()
         cy.wait(2000)
         //cy.get('ul.p-dropdown-items li.p-dropdown-item').eq(2);
-        cy.get('[aria-label="' + aType + '"]').click()
+        //cy.get('[aria-label="' + aType + '"]').click()
+        cy.get('.p-dropdown-items > :nth-child('+aType+')').click();
         //cy.get('.p-dropdown-items').get('BUSINESS').click()
     }
 
-    select_Kyc_set_type() {
+    select_Kyc_set_type(kyc) {
         cy.get(this.kyc_set_locator).click()
         cy.wait(2000)
-        cy.get('[aria-label="TestkycSetName"]').click()
+        //cy.get('[aria-label="TestkycSetName"]').click()
+        cy.get('.p-dropdown-items > :nth-child('+kyc+')').click();
         //cy.get('.p-dropdown-items').get('BUSINESS').click()
     }
 
-    verify_success_dialog_isvisible(txt) {
+    verify_success_dialog_isvisible(txt, otherTxt) {
         cy.get(this.validation_dialog_message_locator).should(($message) => {
-            const messageText = $message.text();
-            expect(messageText).to.include(txt);
-        });
+            const messageText = $message.text()
+            expect(messageText).to.satisfy((text) => {
+                return text.includes(txt) || text.includes(otherTxt)
+            })
+        })
     }
 
     verify_success_dialog_should_not_be_tvisible(txt) {
@@ -131,6 +141,84 @@ export class AddTypeOfAccount {
 
     enter_max_amount(txt) {
         cy.get(this.max_balance_locator).type(txt)
+    }
+
+
+    enter_account_name_and_verify(name) {
+        cy.get(this.account_level_name_locator).type(name).should('have.value','')
+    }
+
+    enter_daily_trans_limit_dr_and_verify(txt) {
+        cy.get(this.daily_trans_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_daily_amt_limit_dr_and_verify(txt) {
+        cy.get(this.daily_amt_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_monthly_trans_limit_dr_and_verify(txt) {
+        cy.get(this.monthly_trans_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_monthly_amt_limit_dr_and_verify(txt) {
+        cy.get(this.monthly_amt_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_yearly_trans_limit_dr_and_verify(txt) {
+        cy.get(this.yearly_trans_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_yearly_amt_limit_dr_and_verify(txt) {
+        cy.get(this.yearly_amt_limit_dr_locator).type(txt).should('have.value','')
+    }
+
+    enter_daily_trans_limit_cr_and_verify(txt) {
+        cy.get(this.daily_trans_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_daily_amt_limit_cr_and_verify(txt) {
+        cy.get(this.daily_amt_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_monthly_trans_limit_cr_and_verify(txt) {
+        cy.get(this.monthly_trans_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_monthly_amt_limit_cr_and_verify(txt) {
+        cy.get(this.monthly_amt_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_yearly_trans_limit_cr_and_verify(txt) {
+        cy.get(this.yearly_trans_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_yearly_amt_limit_cr_and_verify(txt) {
+        cy.get(this.yearly_amt_limit_cr_locator).type(txt).should('have.value','')
+    }
+
+    enter_max_amount_and_verify(txt) {
+        cy.get(this.max_balance_locator).type(txt).should('have.value','')
+    }
+
+    varify_input_fields_are_not_disabled() {
+        cy.get(this.daily_trans_limit_dr_locator).should('not.be.disabled')
+        cy.get(this.daily_amt_limit_dr_locator).should('not.be.disabled')
+        cy.get(this.monthly_trans_limit_dr_locator).should('not.be.disabled')
+        cy.get(this.monthly_amt_limit_dr_locator).should('not.be.disabled')
+        cy.get(this.yearly_trans_limit_dr_locator).should('not.be.disabled')
+        cy.get(this.yearly_amt_limit_dr_locator).should('not.be.disabled')
+
+        cy.get(this.daily_trans_limit_cr_locator).should('not.be.disabled')
+        cy.get(this.daily_amt_limit_cr_locator).should('not.be.disabled')
+        cy.get(this.monthly_trans_limit_cr_locator).should('not.be.disabled')
+        cy.get(this.monthly_amt_limit_cr_locator).should('not.be.disabled')
+        cy.get(this.yearly_trans_limit_cr_locator).should('not.be.disabled')
+        cy.get(this.yearly_amt_limit_cr_locator).should('not.be.disabled')
+
+        cy.get(this.max_balance_locator).should('not.be.disabled')
+
+        cy.get(this.account_level_type_locator).should('not.be.disabled')
+
     }
 
 }
