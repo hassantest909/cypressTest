@@ -66,8 +66,8 @@ export class ViewTypeOfAccount {
 
     select_status(txt) {
         cy.get(this.status_locator).click()
-        cy.wait(2000)
-        cy.get('.p-dropdown-items > :nth-child(' + txt + ')').click();
+        //cy.wait(2000)
+        cy.get('.p-dropdown-items > :nth-child(' + txt + ')',{timeout:3000}).click();
         //cy.get('.p-dropdown-items').get('BUSINESS').click()
     }
 
@@ -113,6 +113,6 @@ export class ViewTypeOfAccount {
 
     navigate_to_view_page(num) {
         //cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-button-icon .p-c .pi .pi-eye"').click()
-        cy.get(':nth-child(' + num + ') > :nth-child(5) > .actions > .p-button-primary').click()
+        cy.get(':nth-child(' + num + ') > :nth-child(5) > .actions > .p-button-primary',{timeout:12000}).click()
     }
 }

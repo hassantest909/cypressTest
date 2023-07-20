@@ -66,7 +66,7 @@ export class AddTypeOfAccount {
     }
 
     verify_success_dialog_isvisible(txt, otherTxt) {
-        cy.get(this.validation_dialog_message_locator).should(($message) => {
+        cy.get(this.validation_dialog_message_locator,{timeout:5000}).should(($message) => {
             const messageText = $message.text()
             expect(messageText).to.satisfy((text) => {
                 return text.includes(txt) || text.includes(otherTxt)

@@ -12,7 +12,7 @@ describe("Types of account search page", () => {
 
     it("Verify that validation messages are visible when search button is click without providing mandatory fields", () => {
         typeObj.click_on_search_button();
-        cy.wait(3000)
+        //cy.wait(3000)
         typeObj.verify_success_dialog_isvisible('Select Any One Option')
     })
 
@@ -62,9 +62,10 @@ describe("Types of account search page", () => {
         typeObj.add_date_to('2023-07-07')
         typeObj.select_status(2)
         typeObj.click_on_search_button()
+        //cy.wait(6000)
+        typeObj.select_switch(1)
         cy.wait(6000)
-        typeObj.select_switch(5)
-        typeObj.verify_dialog_text('This record is already pending for approval', 'Success')
+        typeObj.verify_success_dialog_isvisible2('This record is already pending for approval', 'Success')
         //typeObj.verify_success_dialog_isvisible('This record is already pending for approval')
     })
 
@@ -73,7 +74,7 @@ describe("Types of account search page", () => {
         typeObj.add_date_to('2023-07-07')
         typeObj.select_status(1)
         typeObj.click_on_search_button()
-        cy.wait(6000)
+        //cy.wait(6000)
         //typeObj.select_switch(5)   
         typeObj.check_switch_disable(1)
         //typeObj.verify_dialog_text('This record is already pending for approval','Success')
@@ -96,7 +97,8 @@ describe("Types of account search page", () => {
         typeObj.add_date_from('2023-07-01')
         typeObj.add_date_to('2023-07-07')
         typeObj.click_on_search_button()
-        cy.wait(6000)
+        //cy.wait(6000)
+        typeObj.verify_success_dialog_isvisible2('', 'Success')
         typeObj.verify_length_of_table(5)
     })
 
@@ -104,7 +106,8 @@ describe("Types of account search page", () => {
         typeObj.add_date_from('2023-07-01')
         typeObj.add_date_to('2023-07-07')
         typeObj.click_on_search_button()
-        cy.wait(6000)
+        //cy.wait(6000)
+        typeObj.verify_success_dialog_isvisible2('', 'Success')
         typeObj.click_on_next_page_ontable()
         typeObj.verify_length_of_table(5)
 
@@ -116,7 +119,8 @@ describe("Types of account search page", () => {
         typeObj.add_date_from('2023-07-01')
         typeObj.add_date_to('2023-07-07')
         typeObj.click_on_search_button()
-        cy.wait(6000)
+        //cy.wait(6000)
+        typeObj.verify_success_dialog_isvisible2('', 'Success')
         typeObj.click_on_drop_down_ontable()
         typeObj.select_drop_down_items_ontable(3)//25
         typeObj.verify_length_of_table(25)

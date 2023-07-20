@@ -31,3 +31,4 @@ Cypress.Commands.add('login', (email, password) => {
         cy.get('.p-button').click()
     })
  })
+

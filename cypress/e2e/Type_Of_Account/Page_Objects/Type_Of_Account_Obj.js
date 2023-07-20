@@ -40,7 +40,7 @@ export class TypeOfAccount {
     }
 
     verify_length_of_table(length){
-        cy.get(this.table_length_locator).should('have.length', length)
+        cy.get(this.table_length_locator,{timeout:6000}).should('have.length', length)
     }
 
     verify_input_fields_are_empty(){
@@ -67,11 +67,11 @@ export class TypeOfAccount {
     }
 
     select_switch(num){
-        cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-inputswitch').click()
+        cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-inputswitch',{timeout:6000}).click()
     }
 
     check_switch_disable(num){
-        cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-inputswitch').should('have.class','p-disabled')
+        cy.get(':nth-child('+num+') > :nth-child(5) > .actions > .p-inputswitch',{timeout:6000}).should('have.class','p-disabled')
     }
 
     select_account_type(aType) {
@@ -116,14 +116,14 @@ export class TypeOfAccount {
     }
 
     verify_success_dialog_isvisible(txt) {
-        cy.get(this.validation_dialog_message_locator).should(($message) => {
+        cy.get(this.validation_dialog_message_locator,{timeout:6000}).should(($message) => {
             const messageText = $message.text()
             expect(messageText).to.include(txt)
         });
     }
 
     verify_success_dialog_isvisible2(txt, otherTxt) {
-        cy.get(this.validation_dialog_message_locator).should(($message) => {
+        cy.get(this.validation_dialog_message_locator,{timeout:6000}).should(($message) => {
             const messageText = $message.text()
             expect(messageText).to.satisfy((text) => {
                 return text.includes(txt) || text.includes(otherTxt)

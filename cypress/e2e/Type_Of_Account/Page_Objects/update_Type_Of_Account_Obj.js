@@ -100,7 +100,7 @@ export class UpdateAccountType {
 
     navigate_to_update_page(num) {
         //cy.get(':nth-child(1) > :nth-child(5) > .actions > .p-button-warning')
-        cy.get(':nth-child(' + num + ') > :nth-child(5) > .actions > .p-button-warning').click()
+        cy.get(':nth-child(' + num + ') > :nth-child(5) > .actions > .p-button-warning',{timeout:15000}).click()
     }
 
     verify_validation_message(div) {
@@ -108,6 +108,7 @@ export class UpdateAccountType {
     }
 
     clear_input_fields() {
+
         cy.get(this.daily_trans_limit_dr_locator).clear()
         cy.get(this.daily_amt_limit_dr_locator).clear()
         cy.get(this.monthly_trans_limit_dr_locator).clear()
@@ -201,7 +202,7 @@ export class UpdateAccountType {
     }
 
     verify_success_dialog_isvisible(txt, otherTxt) {
-        cy.get(this.validation_dialog_message_locator).should(($message) => {
+        cy.get(this.validation_dialog_message_locator,{timeout:4000}).should(($message) => {
             const messageText = $message.text()
             expect(messageText).to.satisfy((text) => {
                 return text.includes(txt) || text.includes(otherTxt)

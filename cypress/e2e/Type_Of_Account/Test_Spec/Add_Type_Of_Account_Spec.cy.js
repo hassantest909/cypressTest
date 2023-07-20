@@ -30,7 +30,7 @@ describe("Add Type of Account Positive UI Testcases",()=>{
         addTypeofAccount.enter_yearly_trans_limit_cr(2)
         addTypeofAccount.enter_max_amount(2)
         addTypeofAccount.click_on_submit_button()
-        cy.wait(4000)
+        //cy.wait(4000)
         addTypeofAccount.verify_success_dialog_isvisible('submitted for approval.','Record Already Exist')
         
     })
@@ -53,7 +53,7 @@ describe("Add Type of Account Positive UI Testcases",()=>{
         addTypeofAccount.enter_yearly_trans_limit_cr(2)
         addTypeofAccount.enter_max_amount(2)
         addTypeofAccount.click_on_submit_button()
-        cy.wait(4000)
+        //cy.wait(4000)
         addTypeofAccount.verify_success_dialog_isvisible('submitted for approval.')
         
     })
@@ -76,7 +76,7 @@ describe("Add Type of Account Positive UI Testcases",()=>{
         addTypeofAccount.enter_yearly_trans_limit_cr(2)
         addTypeofAccount.enter_max_amount(2)
         addTypeofAccount.click_on_submit_button()
-        cy.wait(4000)
+        //cy.wait(4000)
         addTypeofAccount.verify_success_dialog_isvisible('submitted for approval.')
         
     })
@@ -99,7 +99,7 @@ describe("Add Type of Account Positive UI Testcases",()=>{
         addTypeofAccount.enter_yearly_trans_limit_cr(2)
         addTypeofAccount.enter_max_amount(2)
         addTypeofAccount.click_on_submit_button()
-        cy.wait(4000)
+        //cy.wait(4000)
         addTypeofAccount.verify_success_dialog_isvisible('Record Already Exist')
         
     })
